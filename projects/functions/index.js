@@ -30,10 +30,8 @@ function returnFirstArgument(value) {
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {
-  if (b === undefined) {
-    return a + 100;
-  } else return a + b;
+function sumWithDefaults(a, b = 100) {
+  return a + b;
 }
 
 /*
@@ -77,11 +75,7 @@ function returnCounter(number = 0) {
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
 function returnArgumentsArray(...params) {
-  const arr = [];
-  for (const param of params) {
-    arr.push(param);
-  }
-  return arr;
+  return params;
 }
 
 /*
@@ -99,8 +93,9 @@ function returnArgumentsArray(...params) {
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn, ...args) {}
-
+function bindFunction(fn, ...args) {
+  return () => fn(...args);
+}
 export {
   returnFirstArgument,
   sumWithDefaults,
