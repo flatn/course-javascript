@@ -27,7 +27,7 @@ function forEach(array, fn) {
 function map(array, fn) {
   const newarr = [];
   for (let i = 0; i < array.length; i++) {
-    const temp = fn(array[i]);
+    const temp = fn(array[i], i, array);
     newarr.push(temp);
   }
   return newarr;
@@ -40,10 +40,21 @@ function map(array, fn) {
 
  Пример:
    reduce([1, 2, 3], (all, current) => all + current) // 6
- */
+*/
+
 function reduce(array, fn, initial) {
-  let combine = array[0];
-  for (let i = 0; i < array.length; i++) {
+  let hasinitial;
+  let combine;
+
+  if (typeof initial !== 'undefined') {
+    hasinitial = true;
+  }
+
+  if (hasinitial) {
+    combine = initial;
+  } else combine = array[0];
+
+  for (let i = hasinitial ? 0 : 1; i < array.length; i++) {
     combine = fn(combine, array[i], i, array);
   }
   return combine;
