@@ -114,7 +114,13 @@ function deleteTextNodes(where) {
    После выполнения функции, дерево <span> <div> <b>привет</b> </div> <p>loftchool</p> !!!</span>
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
-function deleteTextNodesRecursive(where) {}
+function deleteTextNodesRecursive(where) {
+  for (const whereElement of where.childNodes) {
+    if (whereElement.nodeType === 3) {
+      where.removeChild(whereElement);
+    } else deleteTextNodes(whereElement);
+  }
+}
 
 /*
  Задание 7 *:
