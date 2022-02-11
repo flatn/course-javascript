@@ -51,20 +51,18 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
 function isSomeTrue(array, fn) {
-  let answer;
   if (!Array.isArray(array) || array.length === 0) {
-    answer = false;
     throw new Error('empty array');
   } else if (typeof fn != 'function') {
-    answer = false;
     throw new Error('fn is not a function');
   }
 
   for (let i = 0; i < array.length; i++) {
     if (fn(array[i]) === false) {
-      return false;
-    } else return true;
+      return true;
+    }
   }
+  return false;
 }
 
 /*
@@ -83,7 +81,7 @@ function returnBadArguments(fn, ...args) {
   if (typeof fn != 'function') {
     throw new Error('fn is not a function');
   }
-  for (const arg in args) {
+  for (const arg of args) {
     try {
       fn(arg);
     } catch {
