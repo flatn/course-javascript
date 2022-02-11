@@ -51,7 +51,9 @@ function prepend(what, where) {
 function findAllPSiblings(where) {
   const result = [];
   for (const whereElement of where.children) {
-    result.push(whereElement.textContent);
+    if (whereElement.nextElementSibling.tagName === 'P') {
+      result.push(whereElement);
+    }
   }
   return result;
 }
@@ -76,7 +78,7 @@ function findAllPSiblings(where) {
 function findError(where) {
   const result = [];
 
-  for (const child of where.childNodes) {
+  for (const child of where.children) {
     result.push(child.textContent);
   }
 
