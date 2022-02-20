@@ -9,7 +9,7 @@
    addListener('click', document.querySelector('a'), () => console.log('...')) // должна добавить указанный обработчик кликов на указанный элемент
  */
 function addListener(eventName, target, fn) {
-  return target.addEventListener(eventName, fn);
+  target.addEventListener(eventName, fn);
 }
 
 /*
@@ -21,7 +21,7 @@ function addListener(eventName, target, fn) {
    removeListener('click', document.querySelector('a'), someHandler) // должна удалить указанный обработчик кликов на указанный элемент
  */
 function removeListener(eventName, target, fn) {
-  return target.removeEventListener(eventName, fn);
+  target.removeEventListener(eventName, fn);
 }
 
 /*
@@ -34,8 +34,7 @@ function removeListener(eventName, target, fn) {
  */
 function skipDefault(eventName, target) {
   // return target.preventDefault(eventName);
-
-  return target.addEventListener(eventName, (e) => {
+  target.addEventListener(eventName, (e) => {
     e.preventDefault();
   });
 }
@@ -63,7 +62,7 @@ function emulateClick(target) {
  */
 function delegate(target, fn) {
   document.addEventListener('click', (e) => {
-    if (e.target.contains('BUTTON')) {
+    if (e.target.tagname === 'BUTTON') {
       fn();
     }
   });
